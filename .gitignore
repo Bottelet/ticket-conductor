@@ -1,0 +1,15 @@
+ticket-conductor-backend/node_modules
+ticket-conductor-backend/public/hot
+ticket-conductor-backend/public/storage
+ticket-conductor-backend/storage/*.key
+ticket-conductor-backend/vendor
+ticket-conductor-backend/.idea
+ticket-conductor-backend/.vagrant
+ticket-conductor-backend/Homestead.json
+ticket-conductor-backend/Homestead.yaml
+ticket-conductor-backend/npm-debug.log
+ticket-conductor-backend/yarn-error.log
+ticket-conductor-backend/.env
+
+ticket-conductor-frontend/node_modules
+ticket-conductor-frontend/dist/*
