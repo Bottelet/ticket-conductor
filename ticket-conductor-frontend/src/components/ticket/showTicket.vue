@@ -1,6 +1,6 @@
 <template>
 	<v-layout row wrap>
-		<v-flex lg9>
+		<v-flex lg8>
 			<v-card light>
 				<v-card-title  primary-title class="title pb-0">{{ ticket.title }}</v-card-title>
 				<v-subheader class="caption">{{ consumer.first_name }} {{ consumer.last_name }} 
@@ -8,7 +8,7 @@
 				<v-card-text>{{ticket.description}}</v-card-text>
 			</v-card>
 		</v-flex>
-		<v-flex lg3>
+		<v-flex lg4>
 			<v-card>
 				<v-card-text>
 					<sidebar  v-if="ticketTest" :ticket="ticketTest"></sidebar>

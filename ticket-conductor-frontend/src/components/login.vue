@@ -23,6 +23,7 @@
 						v-model="credentials.password"
 						></v-text-field>
 						<p class="red--text caption">{{ errors.password }}</p>
+						<p class="red--text caption">{{ errors.authenticate }}</p>
 						<div>
 							<v-btn success dark v-on:click="postLogin">Login</v-btn>
 						</div>
@@ -43,6 +44,7 @@
 				errors: {
 					email: '',
 					password: '',
+					authenticate: ''
 				},
 				credentials: {
 					email: '',
@@ -69,7 +71,10 @@
 					email: this.credentials.email,
 					password: this.credentials.password,
 				}
-				auth.login(this, credentials, '/foo')
+				var login = auth.login(this, credentials, '/foo')
+				if (login.loginSuccess == false) {
+					this.errors.authenticate = "The user credentials were incorrect."
+				}
 			}
 		}
 	}

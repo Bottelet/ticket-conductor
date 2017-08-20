@@ -13,6 +13,7 @@ export default {
 
   // Send a request to the login URL and save the returned JWT
   login(context, creds, redirect) {
+    var loginSuccess = false;
     var self = this;
     axios.post(config.app_url + '/oauth/token/', {
       username: creds.email,
@@ -30,16 +31,15 @@ export default {
     .then(function (response) {
       localStorage.setItem('token', response.data.access_token)
       self.user.authenticated = true
-
+      self.loginSuccess = true;
       if(redirect) {
-        router.push(redirect)        
+        router.push(redirect)
       }
-
       location.reload();
     })
     .catch(function (error) {
-
     });
+    return {"loginSuccess": loginSuccess};
   },
   // To log out, we just need to remove the token
   logout(redirect) {
@@ -47,7 +47,7 @@ export default {
     this.user.authenticated = false
 
     if(redirect) {
-      router.push(redirect)        
+      router.push(redirect)
     }
     location.reload();
   },
@@ -58,7 +58,7 @@ export default {
       this.user.authenticated = true
     }
     else {
-      this.user.authenticated = false      
+      this.user.authenticated = false
     }
   },
 
@@ -68,4 +68,4 @@ export default {
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     }
   }
-} 
+}
