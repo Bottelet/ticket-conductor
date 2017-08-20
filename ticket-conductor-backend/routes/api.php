@@ -31,4 +31,8 @@ Route::middleware('auth:api')->group(function () {
 		Route::get('/', 'ConsumersController@index');
 		Route::patch('/{id}/update', 'ConsumersController@update');
 	});
+
+	Route::prefix('comment')->group(function () {
+		Route::post('/', 'CommentsController@create');
+	});
 });
