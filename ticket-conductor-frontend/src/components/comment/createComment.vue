@@ -5,7 +5,6 @@
     name="comment"
     label="Comment"
     textarea
-    counter
     textarea
     v-model="comment"
     ></v-text-field>
@@ -27,6 +26,7 @@ export default {
   methods: {
     newComment() {
       var comment = this.comment
+      self = this;
       axios.post(config.api_url + '/ticket/' + this.$route.params.id + '/create-comment',
       {
         text: comment,
@@ -36,6 +36,8 @@ export default {
       })
       .then(function (response) {
         self.comment = null
+        //TODO: Do not call parents other child component function like this
+        self.$parent.$children[2].getComments() //A vuejs 1 (I think)hack to call the getConsumer method, on parent component to instantly refresh the information
         self.$store.commit('setFlashMessage', {
           text: "Comment was added",
           type: "success",

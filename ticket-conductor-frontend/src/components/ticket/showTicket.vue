@@ -7,7 +7,8 @@
 				<router-link :to="{name: 'showConsumer', params: {id: consumer.id}}"> {{ consumer.email }} </router-link></v-subheader>
 				<v-card-text>{{ticket.description}}</v-card-text>
 			</v-card>
-			<create-comment class="mt-4"></create-comment>
+			<create-comment class="mt-4 mb-4"></create-comment>
+			<comments :ticketId="ticketId"></comments>
 		</v-flex>
 		<v-flex lg4>
 			<v-card>
@@ -27,6 +28,7 @@
 	import auth from '../../auth/index.js'
 	import ticketSidebar from './ticketSidebar.vue'
 	import createComment from '../comment/createComment.vue'
+	import comment from '../comment/comment.vue'
 
 	export default {
 		data () {
@@ -64,6 +66,11 @@
 
 			}
 		},
+		computed: {
+			ticketId () {
+				return this.$route.params.id
+			}
+		},
 		mounted: function () {
 			this.getTicket()
 			this.getConsumer()
@@ -72,6 +79,7 @@
 			'new-ticket-modal': newTicketModal,
 			'sidebar': ticketSidebar,
 			'create-comment': createComment,
+			'comments': comment
 		},
 		filters: {
 			formatDate: function(date) {
