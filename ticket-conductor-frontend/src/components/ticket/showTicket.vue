@@ -3,15 +3,16 @@
 		<v-flex lg8>
 			<v-card light>
 				<v-card-title  primary-title class="title pb-0">{{ ticket.title }}</v-card-title>
-				<v-subheader class="caption">{{ consumer.first_name }} {{ consumer.last_name }} 
+				<v-subheader class="caption">{{ consumer.first_name }} {{ consumer.last_name }}
 				<router-link :to="{name: 'showConsumer', params: {id: consumer.id}}"> {{ consumer.email }} </router-link></v-subheader>
 				<v-card-text>{{ticket.description}}</v-card-text>
 			</v-card>
+			<create-comment class="mt-4"></create-comment>
 		</v-flex>
 		<v-flex lg4>
 			<v-card>
 				<v-card-text>
-					<sidebar  v-if="ticketTest" :ticket="ticketTest"></sidebar>
+					<sidebar  v-if="ticket" :ticket="ticket"></sidebar>
 				</v-card-text>
 			</v-card>
 		</v-flex>
@@ -25,11 +26,12 @@
 	import config from '../../../config/config.js'
 	import auth from '../../auth/index.js'
 	import ticketSidebar from './ticketSidebar.vue'
+	import createComment from './createComment.vue'
+
 	export default {
 		data () {
 			return {
-				ticket: {},
-				ticketTest: '',
+				ticket: "",
 				consumer: {}
 			}
 		},
@@ -41,7 +43,7 @@
 				})
 				.then(function (response) {
 					self.ticket = response.data
-					self.ticketTest = response.data
+
 				})
 				.catch(function (error) {
 
@@ -68,7 +70,8 @@
 		},
 		components: {
 			'new-ticket-modal': newTicketModal,
-			'sidebar': ticketSidebar
+			'sidebar': ticketSidebar,
+			'create-comment': createComment,
 		},
 		filters: {
 			formatDate: function(date) {
@@ -78,5 +81,5 @@
 	}
 </script>
 <style>
-	
+
 </style>
