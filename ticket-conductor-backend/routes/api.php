@@ -16,6 +16,7 @@ Route::middleware('auth:api')->group(function () {
 		Route::get('/{id}/collaborators', 'TicketsController@collaborators');
 		Route::patch('/{id}/update', 'TicketsController@update');
 		Route::post('/create', 'TicketsController@store');
+		Route::post('/{id}/create-comment', 'CommentsController@create');
 	});
 
 	Route::prefix('group')->group(function () {
@@ -30,9 +31,5 @@ Route::middleware('auth:api')->group(function () {
 		Route::get('/{id}/tickets', 'ConsumersController@tickets');
 		Route::get('/', 'ConsumersController@index');
 		Route::patch('/{id}/update', 'ConsumersController@update');
-	});
-
-	Route::prefix('comment')->group(function () {
-		Route::post('/', 'CommentsController@create');
 	});
 });
