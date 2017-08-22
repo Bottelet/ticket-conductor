@@ -26,7 +26,7 @@
 	import config from '../../../config/config.js'
 	import auth from '../../auth/index.js'
 	import ticketSidebar from './ticketSidebar.vue'
-	import createComment from './createComment.vue'
+	import createComment from '../comment/createComment.vue'
 
 	export default {
 		data () {

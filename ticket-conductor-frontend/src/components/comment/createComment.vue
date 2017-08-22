@@ -16,6 +16,7 @@
 <script>
 import axios from 'axios'
 import config from '../../../config/config.js'
+import auth from '../../auth/index.js'
 
 export default {
   data () {
@@ -25,17 +26,16 @@ export default {
   },
   methods: {
     newComment() {
-      var comment = this.elConsumer
-      axios.post(config.api_url + '/ticket/' + this.$route.params.id + 'create-comment',
+      var comment = this.comment
+      axios.post(config.api_url + '/ticket/' + this.$route.params.id + '/create-comment',
       {
-        title: comment,
+        text: comment,
       },
       {
         headers: auth.getAuthHeader()
       })
       .then(function (response) {
         self.comment = null
-        self.$parent.getTickets() //A vuejs 1 (I think)hack to call the getTicket method, on parent component to instantly refresh the table
         self.$store.commit('setFlashMessage', {
           text: "Comment was added",
           type: "success",
