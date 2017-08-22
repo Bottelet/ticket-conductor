@@ -17,6 +17,7 @@ Route::middleware('auth:api')->group(function () {
 		Route::patch('/{id}/update', 'TicketsController@update');
 		Route::post('/create', 'TicketsController@store');
 		Route::post('/{id}/create-comment', 'CommentsController@create');
+		Route::get('/{id}/comments', 'CommentsController@show');
 	});
 
 	Route::prefix('group')->group(function () {

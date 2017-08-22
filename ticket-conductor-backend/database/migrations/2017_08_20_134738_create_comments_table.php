@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->text('text');
             $table->integer('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

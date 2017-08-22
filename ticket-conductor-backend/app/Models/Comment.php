@@ -12,11 +12,16 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'text'
+        'text', 'user_id'
     ];
 
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class);
     }
 }
