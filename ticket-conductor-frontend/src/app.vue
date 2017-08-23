@@ -20,11 +20,6 @@
     data () {
       return {
         drawer: true,
-        items: [
-        { title: 'Signup', icon: 'dashboard', link: '/foo' },
-        { title: 'Login', icon: 'question_answer', link: '/bar' },
-        { title: 'Profile', icon: 'question_answer', link: '/user/profile' }
-        ],
         mini: true,
         right: null,
       }
@@ -39,7 +34,7 @@
       },
       getProfile() {
         var self = this;
-        axios.post(config.api_url + '/user/profile', 
+        axios.post(config.api_url + '/user/profile',
           {},
           {
             headers: auth.getAuthHeader()

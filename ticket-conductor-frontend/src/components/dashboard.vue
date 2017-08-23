@@ -51,25 +51,15 @@
 <script>
 	import auth from '../auth/index.js'
 	import snackbar from './layout/misc/snackbar.vue'
-	
+
 	export default {
 		data () {
-			return {
-				drawer: true,
-				user_id: null,
-				items: [
-				{ title: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
-				//TODO: Make not static, somehow provide the id in the link with VueX getter (User)
-				{ title: 'Profile', icon: 'face', link: '/profile/1'},
-				{ title: 'Tickets', icon: 'loyalty', link: '/tickets' },
-				{ title: 'Consumers', icon: 'accessibility', link: '/consumers' },
-				{ title: 'Users', icon: 'tag_faces', link: '/users' },
-				{ title: 'Groups', icon: 'supervisor_account', link: '/groups' },
-				//Logout had to be done static
-				],
-				mini: true,
-				right: null,
-			}
+				return {
+						drawer: true,
+						user_id: null,
+						mini: true,
+						right: null,
+				}
 		},
 		methods: {
 			logout() {
@@ -77,22 +67,31 @@
 			}
 		},
 		computed: {
-			user () {
-				return this.$store.getters.getUser
-			},
-			flashMessage () {
-				return this.$store.getters.getFlashMessage
-			}
-
-		},
+					 user () {
+							 this.user_id = this.$store.getters.getUser.id;
+							 return this.$store.getters.getUser
+					 },
+					 flashMessage () {
+							 return this.$store.getters.getFlashMessage
+					 },
+					 items() {
+							 return [
+							 { title: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
+							 { title: 'Profile', icon: 'face', link: '/profile/' + this.user.id },
+							 { title: 'Tickets', icon: 'loyalty', link: '/tickets' },
+							 { title: 'Consumers', icon: 'accessibility', link: '/consumers' },
+							 { title: 'Users', icon: 'tag_faces', link: '/users' },
+							 { title: 'Groups', icon: 'supervisor_account', link: '/groups' },
+							 //Logout had to be done static
+							 ];
+					 },
+			 },
 		components: {
 			'flash-message': snackbar
-		},
-		mounted () {
 		}
 	}
 </script>
 
 <style>
-	
+
 </style>
