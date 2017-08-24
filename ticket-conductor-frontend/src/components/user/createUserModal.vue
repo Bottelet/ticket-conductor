@@ -97,7 +97,7 @@
 					})
 					return;
 				}
-				if (!this.groupId) {
+				if (!this.lastName) {
 					self.$store.commit('setFlashMessage', {
 						text: "Last name is required",
 						type: "error",
@@ -138,7 +138,7 @@
 					return;
 				}
 
-				axios.post(config.api_url + '/user/create', 
+				axios.post(config.api_url + '/user/create',
 				{
 					first_name: self.firstName,
 					last_name: self.lastName,
@@ -155,7 +155,7 @@
 				.then(function (response) {
 					self.firstName = null
 					self.lastName = null
-					self.phone= null					
+					self.phone= null
 					self.email = null
 					self.password = null
 					self.confirmPassowrd = null
@@ -190,5 +190,5 @@
 </script>
 
 <style>
-	
+
 </style>
