@@ -26,7 +26,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        if($request->password != $request->confirmPassowrd) {
+          return "Password did not match";
+        }
+
+        $user = User::create($request->all());
+        $user->password = bcrypt($request->password);
+        $user->save();
+
         return "User created";
     }
 
@@ -38,7 +45,7 @@ class UsersController extends Controller
      */
     public function show(Request $request)
     {
-        return $request->user()->first();
+        return auth()->user();
     }
 
     /**
