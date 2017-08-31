@@ -71,10 +71,12 @@
 					email: this.credentials.email,
 					password: this.credentials.password,
 				}
-				var login = auth.login(this, credentials, '/foo')
-				if (login.loginSuccess == false) {
-					this.errors.authenticate = "The user credentials were incorrect."
-				}
+				self = this;
+				var login = auth.login(this, credentials, '/foo', function (loginStatus) {
+					if (loginStatus.loginSuccess == false) {
+						self.errors.authenticate = "The user credentials were incorrect."
+					}
+				});
 			}
 		}
 	}

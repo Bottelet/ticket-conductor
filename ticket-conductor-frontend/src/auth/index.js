@@ -12,8 +12,8 @@ export default {
   },
 
   // Send a request to the login URL and save the returned JWT
-  login(context, creds, redirect) {
-    var loginSuccess = false;
+  login(context, creds, redirect, callback) {
+    
     var self = this;
     axios.post(config.app_url + '/oauth/token/', {
       username: creds.email,
@@ -22,24 +22,21 @@ export default {
       client_secret: config.client_secret,
       grant_type: "password",
       scope: "*"
-    },
-    {
-      headers: {
-        'Access-Control-Allow-Origin': 'http:127.0.0.1:9090'
-      }
     })
     .then(function (response) {
       localStorage.setItem('token', response.data.access_token)
       self.user.authenticated = true
-      self.loginSuccess = true;
+
       if(redirect) {
         router.push(redirect)
       }
+      callback({"loginSuccess": true});
       location.reload();
     })
     .catch(function (error) {
+      callback({"loginSuccess": false});
     });
-    return {"loginSuccess": loginSuccess};
+    
   },
   // To log out, we just need to remove the token
   logout(redirect) {
