@@ -7,14 +7,6 @@ Basics:
  * Keep track of tickets from customers
  * User groups, appoint the correct tickets, to the responsible users.
  * Consumer, tickets, and users concept.
- 
-Much more to come. 
-
-##### Live Example
-[ticket-conductor.com](http://ticket-conductor.com)
-
-email: admin@admin.com
-password: admin
 
 #### How set it up locally?
 The app is 2 separate projects, a Laravel API, and VueJS(Webpack) for the frontend
