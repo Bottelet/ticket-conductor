@@ -2,7 +2,7 @@
 ### A Laravel 5.5 and VueJS (SPA) Ticket system app
 ![ticket-conductor](https://user-images.githubusercontent.com/15610490/28838682-58a89388-76f1-11e7-9416-a1ee32ab861a.png)
 
-#(This project was mostly for myself to learn Vue Js a bit better, and will not be maintained)
+# (This project was mostly for myself to learn Vue Js a bit better, and will not be maintained)
 
 Basics:
 
